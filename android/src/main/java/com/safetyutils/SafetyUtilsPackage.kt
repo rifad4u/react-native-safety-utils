@@ -8,26 +8,30 @@ import com.facebook.react.module.model.ReactModuleInfoProvider
 import java.util.HashMap
 
 class SafetyUtilsPackage : BaseReactPackage() {
-  override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {
-    return if (name == SafetyUtilsModule.NAME) {
-      SafetyUtilsModule(reactContext)
-    } else {
-      null
-    }
-  }
 
-  override fun getReactModuleInfoProvider(): ReactModuleInfoProvider {
-    return ReactModuleInfoProvider {
-      val moduleInfos: MutableMap<String, ReactModuleInfo> = HashMap()
-      moduleInfos[SafetyUtilsModule.NAME] = ReactModuleInfo(
-        SafetyUtilsModule.NAME,
-        SafetyUtilsModule.NAME,
-        false,  // canOverrideExistingModule
-        false,  // needsEagerInit
-        false,  // isCxxModule
-        true // isTurboModule
-      )
-      moduleInfos
+    override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {
+        return if (name == SafetyUtilsImpl.NAME) {
+            SafetyUtilsModule(reactContext)
+        } else {
+            null
+        }
     }
-  }
+
+    override fun getReactModuleInfoProvider(): ReactModuleInfoProvider {
+        return ReactModuleInfoProvider {
+            val moduleInfos: MutableMap<String, ReactModuleInfo> = HashMap()
+            val isTurboModule = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
+
+            moduleInfos[SafetyUtilsImpl.NAME] = ReactModuleInfo(
+                SafetyUtilsImpl.NAME,
+                SafetyUtilsImpl.NAME,
+                false,  // canOverrideExistingModule
+                false,  // needsEagerInit
+                false,  // isCxxModule
+                isTurboModule // isTurboModule
+            )
+            moduleInfos
+        }
+    }
+
 }
