@@ -17,5 +17,10 @@ Pod::Spec.new do |s|
   s.private_header_files = "ios/**/*.h"
 
 
-  install_modules_dependencies(s)
+  if ENV['RCT_NEW_ARCH_ENABLED'] == "1" then
+    install_modules_dependencies(s)
+  else
+    s.dependency   "React-Core"
+  end
+
 end

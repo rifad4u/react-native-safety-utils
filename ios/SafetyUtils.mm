@@ -9,15 +9,17 @@
 
 RCT_EXPORT_MODULE()
 
-- (void)calculateAPKChecksum:(nonnull NSString *)algorithm
-                    resolve:(nonnull RCTPromiseResolveBlock)resolve
-                    reject:(nonnull RCTPromiseRejectBlock)reject {
+RCT_EXPORT_METHOD(calculateAPKChecksum:(nonnull NSString *)algorithm
+                resolve:(nonnull RCTPromiseResolveBlock)resolve
+                reject:(nonnull RCTPromiseRejectBlock)reject) {
+
     resolve(@"");
+
 }
 
-- (void)isAppTampered:(nonnull NSString *)expectedBundleID
+RCT_EXPORT_METHOD(isAppTampered:(nonnull NSString *)expectedBundleID
             resolve:(nonnull RCTPromiseResolveBlock)resolve
-            reject:(nonnull RCTPromiseRejectBlock)reject {
+            reject:(nonnull RCTPromiseRejectBlock)reject) {
 
     NSString *currentBundleID = [[NSBundle mainBundle] bundleIdentifier];
 
@@ -39,18 +41,18 @@ RCT_EXPORT_MODULE()
 
 }
 
-- (void)isDeveloperOptionsEnabled:(nonnull RCTPromiseResolveBlock)resolve
-                        reject:(nonnull RCTPromiseRejectBlock)reject {
+RCT_EXPORT_METHOD(isDeveloperOptionsEnabled:(nonnull RCTPromiseResolveBlock)resolve
+                        reject:(nonnull RCTPromiseRejectBlock)reject) {
     resolve(@(NO));
 }
 
-- (void)isLocationEnabled:(nonnull RCTPromiseResolveBlock)resolve
-                reject:(nonnull RCTPromiseRejectBlock)reject {
+RCT_EXPORT_METHOD(isLocationEnabled:(nonnull RCTPromiseResolveBlock)resolve
+                reject:(nonnull RCTPromiseRejectBlock)reject) {
     resolve(@(YES));
 }
 
-- (void)isMockedLocation:(nonnull RCTPromiseResolveBlock)resolve
-                reject:(nonnull RCTPromiseRejectBlock)reject {
+RCT_EXPORT_METHOD(isMockedLocation:(nonnull RCTPromiseResolveBlock)resolve
+                reject:(nonnull RCTPromiseRejectBlock)reject) {
     
     CLLocationManager *locationManager;
     locationManager = [[CLLocationManager alloc] init];
@@ -67,8 +69,8 @@ RCT_EXPORT_MODULE()
     
 }
 
-- (void)isProxyEnabled:(nonnull RCTPromiseResolveBlock)resolve
-                reject:(nonnull RCTPromiseRejectBlock)reject {
+RCT_EXPORT_METHOD(isProxyEnabled:(nonnull RCTPromiseResolveBlock)resolve
+                reject:(nonnull RCTPromiseRejectBlock)reject) {
     
     CFDictionaryRef proxySettingsRef = CFNetworkCopySystemProxySettings();
         
@@ -91,8 +93,8 @@ RCT_EXPORT_MODULE()
 
 }
 
-- (void)isScreenMirroring:(nonnull RCTPromiseResolveBlock)resolve
-                    reject:(nonnull RCTPromiseRejectBlock)reject {
+RCT_EXPORT_METHOD(isScreenMirroring:(nonnull RCTPromiseResolveBlock)resolve
+                    reject:(nonnull RCTPromiseRejectBlock)reject) {
     
     if ([UIScreen screens].count > 1) {
         resolve(@(YES));
@@ -102,8 +104,8 @@ RCT_EXPORT_MODULE()
 
 }
 
-- (void)isVpnActive:(nonnull RCTPromiseResolveBlock)resolve
-            reject:(nonnull RCTPromiseRejectBlock)reject {
+RCT_EXPORT_METHOD(isVpnActive:(nonnull RCTPromiseResolveBlock)resolve
+            reject:(nonnull RCTPromiseRejectBlock)reject) {
 
     NSDictionary *proxySettings = (__bridge NSDictionary *)(CFNetworkCopySystemProxySettings());
     NSDictionary *scoped = proxySettings[@"__SCOPED__"];

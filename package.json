@@ -1,6 +1,6 @@
 {
     "name": "react-native-safety-utils",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "A React Native utility library for detecting device security risks",
     "main": "./lib/module/index.js",
     "types": "./lib/typescript/src/index.d.ts",
